@@ -208,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(width: 16),
               FloatingActionButton(
                 onPressed: () {},
-                tooltip: 'Nuevo botón',
+                tooltip: 'Botón Estrella',
                 child: const Icon(Icons.star),
               ),
             ],
