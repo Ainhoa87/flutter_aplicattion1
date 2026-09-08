@@ -205,6 +205,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 backgroundColor: const Color(0xFF1B5E9F),
                 child: const Icon(Icons.add, size: 32),
               ),
+              const SizedBox(width: 16),
+              FloatingActionButton(
+                onPressed: () {},
+                tooltip: 'Nuevo botón',
+                child: const Icon(Icons.star),
+              ),
             ],
           ),
           floatingActionButtonLocation:
