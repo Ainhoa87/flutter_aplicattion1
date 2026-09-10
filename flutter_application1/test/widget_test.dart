@@ -26,5 +26,17 @@ void main() {
     // Verify that our counter has incremented.
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
+
+    await tester.tap(find.text('Frase motivadora'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('No te rindas!'), findsOneWidget);
+    expect(find.text('Vasos de agua'), findsNothing);
+
+    await tester.tap(find.text('Volver al contador'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Vasos de agua'), findsOneWidget);
+    expect(find.text('No te rindas!'), findsNothing);
   });
 }

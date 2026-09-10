@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Contador de Hidratación Diaria para una vida saludable',
+      title: 'Contador de Hidratación Diaria',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
@@ -69,6 +69,19 @@ class _MyHomePageState extends State<MyHomePage> {
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF1B5E9F),
                         ),
+                      ),
+                      const SizedBox(height: 16),
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MotivationalPage(),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.emoji_emotions_outlined),
+                        label: const Text('Frase motivadora'),
                       ),
                       const SizedBox(height: 32),
                       Expanded(
@@ -183,6 +196,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: 90,
                       height: 90,
                       fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) =>
+                          const ColoredBox(
+                            color: Color(0xFFD7EFFC),
+                            child: Icon(
+                              Icons.water_drop,
+                              color: Color(0xFF1B5E9F),
+                              size: 36,
+                            ),
+                          ),
                     ),
                   ),
                 ),
@@ -194,6 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               FloatingActionButton(
                 onPressed: _decrementCounter,
+                heroTag: 'decrement-water',
                 tooltip: 'Restar vaso',
                 backgroundColor: const Color(0xFF5DADEC),
                 child: const Icon(Icons.remove, size: 28),
@@ -201,15 +224,10 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(width: 16),
               FloatingActionButton(
                 onPressed: _incrementCounter,
+                heroTag: 'increment-water',
                 tooltip: 'Añadir vaso',
                 backgroundColor: const Color(0xFF1B5E9F),
                 child: const Icon(Icons.add, size: 32),
-              ),
-              const SizedBox(width: 16),
-              FloatingActionButton(
-                onPressed: () {},
-                tooltip: 'Boton prueba',
-                child: const Icon(Icons.star),
               ),
             ],
           ),
@@ -217,6 +235,46 @@ class _MyHomePageState extends State<MyHomePage> {
               FloatingActionButtonLocation.centerFloat,
         );
       },
+    );
+  }
+}
+
+class MotivationalPage extends StatelessWidget {
+  const MotivationalPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFEAF7FF),
+      appBar: AppBar(
+        title: const Text('Motivación'),
+        backgroundColor: const Color(0xFFEAF7FF),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'No te rindas!',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF1B5E9F),
+                ),
+              ),
+              const SizedBox(height: 32),
+              ElevatedButton.icon(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.arrow_back),
+                label: const Text('Volver al contador'),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
